@@ -13,3 +13,14 @@ print(ftp.login())
 
 print(ftp.cwd('debian'))
 # 250 Directory successfully changed.
+
+# list directory contents pre sending file
+ftp.retrlines('LIST')
+
+# sends file
+file_to_be_sent = open("README", "wb")
+ftp.retrbinary('RETR README', file_to_be_sent.write)
+print('\n\n -- file sent')
+
+# quits connection
+print(ftp.quit())
